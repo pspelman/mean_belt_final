@@ -1,0 +1,62 @@
+<button name="Add a new movie" class="btn btn-dark btn-add-new-movie" [routerLink]="['../create']" value="add new movie" >Add new movie</button>
+
+
+<!--<input type="button" name="details" class="btn" [routerLink]="['../details/'+movie._id]" value="Details" ><br/>-->
+<!--<input type="button" name="details" class="btn" [routerLink]="['../details/']" value="Details" ><br/>-->
+<!--<input type="button" name="edit" class="btn" [routerLink]="['../edit/'+movie._id]" value="Edit" ><br/>-->
+<!--<input type="button" name="edit" class="btn" [routerLink]="['../edit/']" value="Edit" ><br/>-->
+
+<div style="text-align:center">
+  <h1>
+    Movies
+  </h1>
+
+  <div class="movie_pane">
+    <div class="movie_list" *ngIf="list_of_all_the_things">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              Title
+            </th>
+            <!--<th scope="col">-->
+              <!--Genre-->
+            <!--</th>-->
+            <th scope="col">
+                avg rating
+            </th>
+            <th scope="col">
+              action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let movie of list_of_all_the_things">
+            <th scope="row">
+              {{movie.movie_title}}
+            </th>
+            <!--<td>-->
+              <!--{{movie.movie_genre}}-->
+            <!--</td>-->
+            <td>
+              {{getAvgRating(movie.reviews) | number: '1.2-2'}}
+            </td>
+            <td>
+              <!--<button name="details" class="table-btn" [routerLink]="['../details/'+movie._id]" value="Read Reviews" >Details</button>-->
+              <button name="details" class="btn-outline-light" [routerLink]="['../details/'+movie._id]" >read reviews</button>
+              <button name="reviews" class="btn-outline-light" [routerLink]="['../reviews/'+movie._id]" >write review</button>
+              <!--<button name="edit" class="table-btn" [routerLink]="['../edit/'+movie._id]" value="Update" >Update</button>-->
+              <!--<button name="edit" class="table-btn" (click)="editInPlace(movie._id)" value="Edit In Place" >Edit</button>-->
+              <br/>
+            </td>
+          </tr>
+        </tbody>
+
+
+      </table>
+    </div>
+    <div class="edit_div" *ngIf="editingInPlace">
+      <app-edit></app-edit>
+    </div>
+  </div>
+</div>

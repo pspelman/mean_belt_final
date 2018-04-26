@@ -1,0 +1,67 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+body{
+  background-color: rgba(0, 0, 22, 0.9);
+  color: #00B7FF;
+  padding-top: 10px;
+  /*padding-bottom: 10px;*/
+}
+
+.btn-outline-light{
+  border-radius: 5px;
+}
+
+h1, h2{
+  text-shadow: 2px 2px 10px greenyellow;
+
+}
+
+/*.btn-add-new-movie{*/
+  /*background-color: transparent;*/
+/*}*/
+
+.app_container {
+  padding: 5%;
+  background-color: rgba(59, 120, 126, 0.17);
+  border-radius: 10px;
+  border: 1px solid rgba(173, 255, 47, 0.59);
+  width: 90vw;
+  height: 200vh;
+  margin: 10px auto;
+}
+
+.user_input_form{
+  margin-top: 5%;
+  padding-top: 5%;
+  border: 1px solid pink
+;
+}
+
+button .btn {
+  background-color: #cda3a2;
+  border: 1px solid black;
+}
+.form-control.ng-invalid.ng-touched.ng-dirty {
+  border: 2px solid red;
+}
+
+tr:nth-child(even) {background: rgba(204, 204, 204, 0.24)
+}
+tr:nth-child(odd) {background: rgba(255, 255, 255, 0.05)
+}
+
+.table-btn btn{
+  dispaly: inline;
+}
+
+/*.table[_ngcontent-c1] th[_ngcontent-c1], .table[_ngcontent-c1] td[_ngcontent-c1]*/
+
+.table[_ngcontent-c3] th[_ngcontent-c3], .table[_ngcontent-c3] td[_ngcontent-c3]{
+  width: 10%;
+}
+
+
+.btn-dark.home {
+  border: 1px solid #f9a600;
+
+}

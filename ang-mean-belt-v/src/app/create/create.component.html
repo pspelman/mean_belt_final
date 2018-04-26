@@ -1,0 +1,234 @@
+<!--<button name="create" class="btn" [routerLink]="['../home']" value="Home" >Home</button>-->
+<h1>Enter new movie details</h1>
+  <form class="user_input_form" (submit)="createNewMovie()" #new_movie_form="ngForm" onsubmit="return false" name="new_movie_form">
+
+    <div class="alert alert-danger" *ngIf="(!movie_title.valid && movie_title.dirty);" >
+      <div *ngIf="movie_title.errors.required">Blank titles are not allowed</div>
+      <div *ngIf="movie_title.errors.minlength">Movie titles must contain more than {{ movie_title.errors.minlength.requiredLength }} letters</div>
+    </div>
+    <div class="form-group">
+      <label for="new_movie.movie_title">Title:</label>
+      <input
+        id="new_movie.movie_title"
+        type="text"
+        name="movie_title"
+        [(ngModel)]="new_movie.movie_title"
+        #movie_title="ngModel"
+        minlength="3"
+        required
+      />
+    </div>
+    <!--<div class="alert alert-danger" *ngIf="(!movie_title.valid && !movie_title.untouched && movie_title.dirty);" >-->
+
+
+
+
+    <!--genre-->
+    <div class="form-group" [class.has-error]="review_stars.untouched">
+      <label for="review_stars">Rating (1-5 stars):</label>
+      <select
+        [(ngModel)]="new_movie.review.stars"
+        id="review_stars"
+        name="review_stars"
+        #review_stars="ngModel"
+        required
+
+
+      >
+        <!--<option value="" disabled selected>>select a star</option>-->
+        <!--<option selected="selected" [value]="star_select[0]">{{star_select[0]}}</option>-->
+        <option [value]="star_select[0]">{{star_select[0]}}</option>
+        <option [value]="star_select[1]">{{star_select[1]}}</option>
+        <option [value]="star_select[2]">{{star_select[2]}}</option>
+        <option [value]="star_select[3]">{{star_select[3]}}</option>
+        <option [value]="star_select[4]">{{star_select[4]}}</option>
+      </select>
+    </div>
+    <!--<div class="alert-danger" *ngIf="(review_stars.untouched)">Touch the stars</div>-->
+    <!--<div class="form-group" [class.has-error]="review.stars.touched">-->
+      <!--<label for="review.stars">Rating (1-5 stars):</label>-->
+      <!--<select-->
+        <!--[(ngModel)]="new_movie.review.stars"-->
+        <!--id="review.stars"-->
+        <!--name="review.stars"-->
+        <!--#stars="ngModel"-->
+        <!--required-->
+      <!--&gt;-->
+        <!--&lt;!&ndash;<option value="" disabled selected>>select a star</option>&ndash;&gt;-->
+        <!--<option [value]="star_select[0]">{{star_select[0]}}</option>-->
+        <!--<option [value]="star_select[1]">{{star_select[1]}}</option>-->
+        <!--<option [value]="star_select[2]">{{star_select[2]}}</option>-->
+        <!--<option [value]="star_select[3]">{{star_select[3]}}</option>-->
+        <!--<option [value]="star_select[4]">{{star_select[4]}}</option>-->
+      <!--</select>-->
+    <!--</div>-->
+    <!--<div class="alert-danger" *ngIf="(review.stars.untouched)"></div>-->
+
+    <div class="alert alert-danger" *ngIf="(!user_name.valid && user_name.dirty);" >
+      <div *ngIf="user_name.errors.required">Blank user names are not allowed</div>
+      <div *ngIf="user_name.errors.minlength">User names must contain more than {{ user_name.errors.minlength.requiredLength }} letters</div>
+    </div>
+    <div class="form-group">
+      <label for="review.user_name">Your name:</label>
+      <input
+        id="review.user_name"
+        type="text"
+        name="user_name"
+        [(ngModel)]="new_movie.review.user_name"
+        #user_name="ngModel"
+        minlength="3"
+        required
+      />
+      <!--<div class="alert alert-danger" *ngIf="(!user_name.valid && !user_name.untouched && user_name.dirty);" >-->
+
+    </div>
+
+    <div class="alert alert-danger" *ngIf="(!review_text.valid && review_text.dirty);" >
+      <div *ngIf="review_text.errors.required">Blank reviews are not allowed</div>
+      <div *ngIf="review_text.errors.minlength">Reviews must contain more than {{ review_text.errors.minlength.requiredLength }} letters</div>
+    </div>
+    <div class="form-group">
+      <label for="review.review_text">Your review</label>
+      <textarea
+        class="form-control"
+        id="review.review_text"
+        name="review_text"
+        [(ngModel)]="new_movie.review.review_text"
+        #review_text="ngModel"
+        minlength="3"
+        required
+      >
+
+    </textarea>
+  </div>
+
+    <button type="submit" [disabled]="!new_movie_form.form.valid" class="btn-outline-light" name="submit">Submit</button>
+  <!--<button ng-disabled="new_movie_form.invalid" type="submit" class="btn-outline-light" name="submit">Submit</button>-->
+  <button type="reset" class="btn-outline-light" name="reset" (click)="navHome()">Cancel</button>
+
+
+
+    <div *ngIf="backend_errors" class="alert-danger">
+      <p>There were errors with the movie registration:</p>
+      <div *ngFor="let err of backend_errors" class="alert-danger">
+       -> {{err}}
+      </div>
+    </div>
+
+  </form>
+
+
+
+<!--&lt;!&ndash;<button name="create" class="btn" [routerLink]="['../home']" value="Home" >Home</button>&ndash;&gt;-->
+<!--<h1>Enter new movie details</h1>-->
+  <!--<form class="user_input_form" (submit)="createNewMovie()" #new_movie_form="ngForm" onsubmit="return false" name="new_movie_form">-->
+    <!--<div class="form-group">-->
+      <!--<label for="new_movie.movie_title">Title:</label>-->
+      <!--<input-->
+        <!--id="new_movie.movie_title"-->
+        <!--type="text"-->
+        <!--name="movie_title"-->
+        <!--[(ngModel)]="new_movie.movie_title"-->
+        <!--#movie_title="ngModel"-->
+        <!--minlength="3"-->
+        <!--required-->
+      <!--/>-->
+    <!--</div>-->
+    <!--<div class="alert alert-danger" *ngIf="(!movie_title.valid && !movie_title.untouched && movie_title.dirty);" >-->
+      <!--<div *ngIf="movie_title.errors.required">Blank titles are not allowed</div>-->
+      <!--<div *ngIf="movie_title.errors.minlength">Movie titles must contain more than {{ movie_title.errors.minlength.requiredLength }} letters</div>-->
+    <!--</div>-->
+
+
+
+    <!--&lt;!&ndash;genre&ndash;&gt;-->
+    <!--<div class="form-group" [class.has-error]="review_stars.untouched">-->
+      <!--<label for="review_stars">Rating (1-5 stars):</label>-->
+      <!--<select-->
+        <!--[(ngModel)]="new_movie.review.stars"-->
+        <!--id="review_stars"-->
+        <!--name="review_stars"-->
+        <!--#review_stars="ngModel"-->
+        <!--required-->
+
+
+      <!--&gt;-->
+        <!--&lt;!&ndash;<option value="" disabled selected>>select a star</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option selected="selected" [value]="star_select[0]">{{star_select[0]}}</option>&ndash;&gt;-->
+        <!--<option selected value="1">{{star_select[0]}}</option>-->
+        <!--<option [value]="star_select[1]">{{star_select[1]}}</option>-->
+        <!--<option [value]="star_select[2]">{{star_select[2]}}</option>-->
+        <!--<option [value]="star_select[3]">{{star_select[3]}}</option>-->
+        <!--<option [value]="star_select[4]">{{star_select[4]}}</option>-->
+      <!--</select>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<div class="alert-danger" *ngIf="(review_stars.untouched)">Touch the stars</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="form-group" [class.has-error]="review.stars.touched">&ndash;&gt;-->
+      <!--&lt;!&ndash;<label for="review.stars">Rating (1-5 stars):</label>&ndash;&gt;-->
+      <!--&lt;!&ndash;<select&ndash;&gt;-->
+        <!--&lt;!&ndash;[(ngModel)]="new_movie.review.stars"&ndash;&gt;-->
+        <!--&lt;!&ndash;id="review.stars"&ndash;&gt;-->
+        <!--&lt;!&ndash;name="review.stars"&ndash;&gt;-->
+        <!--&lt;!&ndash;#stars="ngModel"&ndash;&gt;-->
+        <!--&lt;!&ndash;required&ndash;&gt;-->
+      <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;<option value="" disabled selected>>select a star</option>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<option [value]="star_select[0]">{{star_select[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option [value]="star_select[1]">{{star_select[1]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option [value]="star_select[2]">{{star_select[2]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option [value]="star_select[3]">{{star_select[3]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;<option [value]="star_select[4]">{{star_select[4]}}</option>&ndash;&gt;-->
+      <!--&lt;!&ndash;</select>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="alert-danger" *ngIf="(review.stars.untouched)"></div>&ndash;&gt;-->
+
+
+    <!--<div class="form-group">-->
+      <!--<label for="review.user_name">Your name:</label>-->
+      <!--<input-->
+        <!--id="review.user_name"-->
+        <!--type="text"-->
+        <!--name="user_name"-->
+        <!--[(ngModel)]="new_movie.review.user_name"-->
+        <!--#user_name="ngModel"-->
+        <!--minlength="3"-->
+        <!--required-->
+      <!--/>-->
+      <!--<div class="alert alert-danger" *ngIf="(!user_name.valid && !user_name.untouched && user_name.dirty);" >-->
+        <!--<div *ngIf="user_name.errors.required">Blank user names are not allowed</div>-->
+        <!--<div *ngIf="user_name.errors.minlength">User names must contain more than {{ user_name.errors.minlength.requiredLength }} letters</div>-->
+      <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<label for="review.review_text">Your review</label>-->
+      <!--<textarea-->
+        <!--class="form-control"-->
+        <!--id="review.review_text"-->
+        <!--name="review_text"-->
+        <!--[(ngModel)]="new_movie.review.review_text"-->
+        <!--#review_text="ngModel"-->
+        <!--minlength="3"-->
+        <!--required-->
+      <!--&gt;-->
+
+    <!--</textarea>-->
+  <!--</div>-->
+
+    <!--<button type="submit" [disabled]="!new_movie_form.form.valid" class="btn-outline-light" name="submit">Submit</button>-->
+  <!--&lt;!&ndash;<button ng-disabled="new_movie_form.invalid" type="submit" class="btn-outline-light" name="submit">Submit</button>&ndash;&gt;-->
+  <!--<button type="reset" class="btn-outline-light" name="reset" (click)="navHome()">Cancel</button>-->
+
+
+
+    <!--<div *ngIf="backend_errors" class="alert-danger">-->
+      <!--<p>There were errors with the movie registration:</p>-->
+      <!--<div *ngFor="let err of backend_errors" class="alert-danger">-->
+       <!-- -> {{err}}-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</form>-->
+
+
+

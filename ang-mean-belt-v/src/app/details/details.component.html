@@ -1,0 +1,51 @@
+<!--<span *ngIf="getSecondsBetweenDates(movie.createdAt) < 30">-->
+<!--<input type="button" name="main" class="btn" [routerLink]="['../../home']" value="Main">-->
+<button name="delete" class="table-btn btn-danger" style="position: absolute; right: 10%;" (click)="deleteMovie(movie_id)" value="Delete" >Delete this movie</button>
+<!--</span>-->
+<br/>
+<div class="reviews">
+  <h2>Reviews for <span class="border-light">{{selected_movie.movie_title}}</span></h2>
+  <!--<h3>Reviews for {{selected_movie.movie_title}}</h3>-->
+  <br/>
+
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">
+        Name
+      </th>
+      <th scope="col">
+        Stars
+      </th>
+      <th scope="col">
+        Review
+      </th>
+      <th scope="col">
+        Action
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let review of selected_movie.reviews">
+      <th scope="row">
+        {{review.user_name}}
+      </th>
+      <td>
+        {{review.stars}}
+      </td>
+      <td>
+        {{review.review_text}}
+      </td>
+      <td>
+        <!--id: {{review._id}}-->
+        <!--<button name="delete" class="table-btn btn-danger" style="position: absolute; right: 10%;" (click)="deleteReview(movie_id, review._id)" value="Delete" >Delete this movie</button>-->
+        <button name="delete" class="table-btn btn-danger" style="position: absolute; right: 10%;" (click)="deleteReview(movie_id, review._id)" value="Delete" >remove</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!--<button name="edit" class="table-btn" [routerLink]="['../../reviews/'+selected_movie._id]" value="Review" >Write Review</button>-->
+
+</div>
