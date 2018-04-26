@@ -21,7 +21,7 @@ export class ReviewsComponent implements OnInit {
   constructor(private _http: DataManagerService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
       this.movie_id = params['movie_id'];
-      console.log(`got the id: `, this.movie_id);
+      // console.log(`got the id: `, this.movie_id);
     });
 
   }
@@ -30,14 +30,10 @@ export class ReviewsComponent implements OnInit {
     this.new_review.stars = 1;
     let observable = this._http.getMovieById(this.movie_id);
     observable.subscribe(data => {
-      console.log(`Query for specific movie returned: `, data);
+      // console.log(`Query for specific movie returned: `, data);
       // this.movie_data = data['movie'][0];
       this.selected_movie = data['movie'][0];
       console.log(`selected movie::`,this.selected_movie);
-      // this.movie_id = data['movie'][0]._id;
-      // this.selected_movie.id = data['movie'][0].id;
-      // this.selected_movie.movie_title = data['movie'][0].movie_title;
-      // this.selected_movie.movie_genre = data['movie'][0].movie_genre;
       // this.selected_movie.description = data['movie'][0].description;
     })
 
@@ -50,10 +46,10 @@ export class ReviewsComponent implements OnInit {
     console.log(`checking form for valid inputs`,);
     if (this.new_review.user_name.length < 3 ||
       this.new_review.review_text.length < 3 ){
-      console.log(`invalid form data`,);
+      // console.log(`invalid form data`,);
       return true;
     } else {
-      console.log(`enough data to send`,);
+      // console.log(`enough data to send`,);
       return false;
     }
   }
@@ -68,8 +64,8 @@ export class ReviewsComponent implements OnInit {
 
 
   logChange(change_item: HTMLInputElement) {
-    console.log(`Item changed: `,change_item);
-    console.log(`ViewModel: `,change_item['viewModel']);
+    // console.log(`Item changed: `,change_item);
+    // console.log(`ViewModel: `,change_item['viewModel']);
   }
 
 

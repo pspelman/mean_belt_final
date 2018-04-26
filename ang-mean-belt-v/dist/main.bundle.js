@@ -749,7 +749,7 @@ var ReviewsComponent = /** @class */ (function () {
         this.selected_movie = new data_manager_service_1.MovieModel();
         this.activatedRoute.params.subscribe(function (params) {
             _this.movie_id = params['movie_id'];
-            console.log("got the id: ", _this.movie_id);
+            // console.log(`got the id: `, this.movie_id);
         });
     }
     ReviewsComponent.prototype.ngOnInit = function () {
@@ -757,14 +757,10 @@ var ReviewsComponent = /** @class */ (function () {
         this.new_review.stars = 1;
         var observable = this._http.getMovieById(this.movie_id);
         observable.subscribe(function (data) {
-            console.log("Query for specific movie returned: ", data);
+            // console.log(`Query for specific movie returned: `, data);
             // this.movie_data = data['movie'][0];
             _this.selected_movie = data['movie'][0];
             console.log("selected movie::", _this.selected_movie);
-            // this.movie_id = data['movie'][0]._id;
-            // this.selected_movie.id = data['movie'][0].id;
-            // this.selected_movie.movie_title = data['movie'][0].movie_title;
-            // this.selected_movie.movie_genre = data['movie'][0].movie_genre;
             // this.selected_movie.description = data['movie'][0].description;
         });
     };
@@ -772,11 +768,11 @@ var ReviewsComponent = /** @class */ (function () {
         console.log("checking form for valid inputs");
         if (this.new_review.user_name.length < 3 ||
             this.new_review.review_text.length < 3) {
-            console.log("invalid form data");
+            // console.log(`invalid form data`,);
             return true;
         }
         else {
-            console.log("enough data to send");
+            // console.log(`enough data to send`,);
             return false;
         }
     };
@@ -787,8 +783,8 @@ var ReviewsComponent = /** @class */ (function () {
         this.router.navigateByUrl('/reviews/' + id);
     };
     ReviewsComponent.prototype.logChange = function (change_item) {
-        console.log("Item changed: ", change_item);
-        console.log("ViewModel: ", change_item['viewModel']);
+        // console.log(`Item changed: `,change_item);
+        // console.log(`ViewModel: `,change_item['viewModel']);
     };
     ReviewsComponent.prototype.createNewReview = function () {
         var _this = this;
